@@ -1,0 +1,199 @@
+
+<html dir="rtl">
+ 
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>פרטי לקוח</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+      <section class="example-section">
+      
+      <form [formGroup]="form">
+        
+      <mat-form-field>
+        <mat-label>תז</mat-label>
+        <input matInput id="customerId" formControlName="customerId" required>                
+      </mat-form-field>
+     
+
+      <mat-form-field>
+        <mat-label>שם פרטי</mat-label>
+        <input matInput  id="firstName" formControlName="firstName" required>                
+     </mat-form-field>
+
+     <mat-form-field>
+      <mat-label>שם משפחה</mat-label>
+      <input matInput  id="lastName" formControlName="lastName" required>                
+   </mat-form-field>
+
+ 
+    <!-- כתובת -->
+     <div formArrayName="address">
+      <div *ngFor="let addrs of form.controls.address.controls; let i=index" class="panel panel-default"><!-- form.get('address').value--> <!--form.controls['address']--> 
+        <div class="panel-heading">
+          <span></span>
+          <span class="glyphicon glyphicon-remove pull-right" *ngIf="form.controls.address.controls.length > 1"></span>
+        </div>
+        <div class="panel-body" [formGroupName]="i">
+          <app-address-details [group]="form.controls.address.controls[i]"></app-address-details>
+       </div>
+     </div>
+   </div>
+
+
+      <!--orig <div class="row">
+        <div class="col-xs-12" formArrayName="address">
+          <div
+          style="margin:5px;"
+          class="row"
+          *ngFor="let address of adddressControls;let i = index"
+          [formGroupName]="i"
+          >
+      
+            <div class="col-xs-8">
+             <app-text-input formControlName="city" [label]='"עיר"'></app-text-input>
+            </div>
+            <div class="col-xs-2">
+              <app-text-input formControlName="street" [label]='"רחוב"'></app-text-input>
+            </div>
+            <div class="col-xs-2">
+              <app-text-input formControlName="houseNum" [label]='"מס׳ בית"'></app-text-input>
+            </div>
+
+
+            <div class="col-xs-2">
+                <app-text-input formControlName="zipCode" [label]='"מיקוד"'></app-text-input>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>-->
+      
+
+      <!-- מנויים -->
+      <app-contracts [tContracts]="form.get('contracts').value"></app-contracts>
+
+      <!--<div formArrayName="contracts">
+        <div *ngFor="let contract of form.controls.contracts.controls; let i=index" class="panel panel-default">
+          <div class="panel-heading">
+            <span></span>
+            <span class="glyphicon glyphicon-remove pull-right" *ngIf="form.controls.contracts.controls.length > 1"></span>
+          </div>
+          <div class="panel-body" [formGroupName]="i">
+            <app-contracts [group]="form.controls.contracts.controls[i]"></app-contracts>
+         </div>
+       </div>
+     </div>-->
+  
+
+      <!--<div class="row">
+        <div class="col-xs-12" formArrayName="contracts">
+          <div
+          style="margin:5px;"
+          class="row"
+          *ngFor="let contract of contractsControls;let i = index"
+          [formGroupName]="i"
+          >
+           
+          <div class="col-xs-8">
+            <app-text-input formControlName="memberNumber" [label]='"מספר מנוי"'></app-text-input>
+           </div>
+
+           <div class="col-xs-8">
+             <app-text-input formControlName="type" [label]='"סוג"'></app-text-input>
+            </div>
+
+     
+            <div class="col-xs-8">
+              <app-text-input formControlName="firstName" [label]='"שם פרטי"'></app-text-input>
+             </div>
+             <div class="col-xs-8">
+              <app-text-input formControlName="lasttName" [label]='"שם משפחה"'></app-text-input>
+             </div>-->
+
+
+             <!--חבילות-->
+             <!--<div class="row">
+              <div class="col-xs-12" formArrayName="packages">
+                <div
+                style="margin:5px;"
+                class="row"
+                *ngFor="let package of packagesControls;let i = index"
+                [formGroupName]="i"
+                >
+                  <div class="col-xs-8">
+                   <app-text-input formControlName="type" [label]='"סוג"'></app-text-input>
+                  </div>
+      
+                  <div class="col-xs-8">
+                   <app-text-input formControlName="name" [label]='"שם"'></app-text-input>
+                  </div>
+                  <div class="col-xs-2">
+                    <app-text-input formControlName="quantity" [label]='"כמות"'></app-text-input>
+                  </div>
+      
+                  <div class="col-xs-2">
+                      <app-text-input formControlName="utilization" [label]='"ניצול"'></app-text-input>
+                  </div>
+           
+          
+      
+
+ 
+
+
+        </div>
+          <hr>
+        </div>
+      </div>-->
+      
+
+            
+
+ <!--      </div>
+          <hr>
+        </div>
+      </div>-->
+      
+
+
+
+
+    
+      
+      <br>
+   
+      
+
+    
+      <button mat-button mat-flat-button color="accent" (click)="save()">שמירה</button>
+      <button mat-button mat-flat-button color="primary" (click)="changeCustomer()">החלף לקוח</button>
+
+      
+
+          
+      </form>
+      </section>
+      
+      </mat-card-content>
+      <mat-card-actions>
+      </mat-card-actions>
+      </mat-card>
+     
+    
+
+
+      <p>
+        form :
+        {{ form.value | json }}
+      </p>
+
+
+      
+      
+      
+</html>
+      
