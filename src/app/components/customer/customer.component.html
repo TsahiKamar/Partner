@@ -9,9 +9,9 @@
     <mat-card-content>     
       
     
-      <app-customer-identify (isValid)="onCustomerValidation($event)" (customerId)="getId($event)" ></app-customer-identify>
+      <app-customer-identify (isValid)="onCustomerValidation($event)" (customerId)="getId($event)"></app-customer-identify>
     
-      <app-customer-details [hidden]="!isCustomerValid"></app-customer-details>
+      <app-customer-details [hidden]="!isCustomerValid" [tCustomerId]="customerId"></app-customer-details>
    
    
     </mat-card-content>

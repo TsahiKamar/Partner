@@ -1,6 +1,6 @@
 interface Package {
     name: string;
-    type:any; //tbc enum
+    type:number; 
     quantity: number;
     utilization : number;  
   }

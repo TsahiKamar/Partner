@@ -10,22 +10,18 @@
   
           <table mat-table [dataSource]="data" matSort matSortActive="name" class="mat-elevation-z8">
   
-         <!--   <ng-container matColumnDef="customerId">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>מזהה לקוח</th>
-              <td mat-cell *matCellDef="let element"> {{ element.customerId }} </td>
-          </ng-container>-->
   
-  
-            <ng-container matColumnDef="type">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>סוג</th>
-                <td mat-cell *matCellDef="let element"> {{ element.type }} </td>
-            </ng-container>
        
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef [hidden]="false">שם</th>
                 <td mat-cell *matCellDef="let element" [hidden]="false"> {{ element.name }} </td>
             </ng-container>
-         
+      
+            <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>סוג</th>
+              <td mat-cell *matCellDef="let element"> {{ element.type }} </td>
+          </ng-container>
+    
             <ng-container matColumnDef="quantity">
                 <th mat-header-cell *matHeaderCellDef [hidden]="false">כמות</th>
                 <td mat-cell *matCellDef="let element" [hidden]="false"> {{ element.quantity }} </td>

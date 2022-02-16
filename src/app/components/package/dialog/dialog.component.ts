@@ -10,7 +10,7 @@ export interface UsersData {}
 })
 export class PackageDialogComponent implements OnInit {
 
-    displayedColumns: string[] = ['type','name','quantity','utilization'];
+    displayedColumns: string[] = ['name','type','quantity','utilization'];
 
   
     @ViewChild(MatTable,{static:true}) table: MatTable<any>;

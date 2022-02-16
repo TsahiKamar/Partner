@@ -1,7 +1,7 @@
-interface Contract {//Product extends Base{
+interface Contract {
 
     memberNumber: string;
-    //type:any; //tbc enum
+    type:number; 
     firstName: string;
     lastName : string;
     packages: Package[];

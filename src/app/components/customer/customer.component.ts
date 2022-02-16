@@ -1,9 +1,6 @@
 import { CustomerDetailsComponent } from './../customer-details/customer-details.component';
-//import { DialogComponent } from '/.././customer-details/dialog/dialog.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-//import { MatDialog, MatDialogConfig, MatTable } from '@angular/material';
-//import { DialogComponent } from  '../customer/dialog/dialog.component';//'../dialog/dialog.component';//'./dialog/dialog.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CustomerService } from 'src/app/services/customer.service';
 import { LocalStorageService } from 'src/app/services/localStorage.service';
@@ -15,14 +12,15 @@ import { LocalStorageService } from 'src/app/services/localStorage.service';
 })
 export class CustomerComponent implements OnInit {
   isCustomerValid:boolean = false;//Init
-  customerId!:any;
+  customerId!:string;
   customer: Customer;
 
   form = new FormGroup({
     customerId: new FormControl('')
   });
   
-  constructor(private router: Router,private route: ActivatedRoute,private custService: CustomerService,private localStorageService :LocalStorageService) { }
+  constructor(private router: Router,private route: ActivatedRoute,private custService: CustomerService,private localStorageService :LocalStorageService
+    ) { }
 
   ngOnInit() {
       
@@ -41,14 +39,18 @@ export class CustomerComponent implements OnInit {
   }
  
   
-  getCustomerDetails(customerId: any){
+  getCustomerDetails(customerId: string){
+
     this.custService.getCustomerDetails(customerId).subscribe(result => {
       this.customer = result;
-      this.localStorageService.set('customer',JSON.stringify(this.customer));
+      this.localStorageService.set(customerId,JSON.stringify(this.customer));
+
       const Timeout = setTimeout(this.timeout, 300000);//5000
      },
     error => {
-        alert("getCustomerDetails error : " + JSON.stringify(error));
+
+      alert("getCustomerDetails error : " + JSON.stringify(error));
+
     },
     () => {
         // 'onCompleted' callback.
@@ -60,8 +62,6 @@ export class CustomerComponent implements OnInit {
   }
 
   public timeout(){
-    this.localStorageService.remove('customer');
-    //this.localStorageService.clear();
     location.reload();
   }
 

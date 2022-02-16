@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
@@ -16,10 +16,11 @@ export class CustomerIdentifyComponent implements OnInit {
   message:string;
 
   form = new FormGroup({
-    customerId: new FormControl('029505674')
+    customerId: new FormControl('')
   });
 
-  constructor(private router: Router,private route: ActivatedRoute,private shareService:ShareService) { }
+  constructor(private router: Router,private route: ActivatedRoute,
+    @Inject(ShareService) private shareService) { }
 
   ngOnInit(): void {
      
@@ -27,7 +28,10 @@ export class CustomerIdentifyComponent implements OnInit {
   
   validation() {
 
+ 
     this.custId = this.GetControlValue(this.form,'customerId');
+    this.shareService.updateMessage(this.custId);
+   
     this.message = '';
     var isValid = this.customerIdValidation(this.custId); 
     this.customerId.emit(this.custId);
@@ -35,7 +39,6 @@ export class CustomerIdentifyComponent implements OnInit {
     this.isValid.emit(isValid);
     if (isValid) {
       //this.message = 'מס׳ ת.ז תקין !';
-      this.shareService.sendValue(this.custId);
     }
     else
     {
@@ -43,13 +46,11 @@ export class CustomerIdentifyComponent implements OnInit {
     }
   }
 
-//send customer id to parent
   addNewItem(value: string) {
     this.customerId.emit(value);
   }
 
 //if divide by 10 without remainder than id is OK
-
   customerIdValidation(id) {
 
     id = String(id).trim();

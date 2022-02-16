@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer.service';
 import { AddressDialogComponent } from '../address/dialog/dialog.component';
-//import {Address} from '../address-details/address.model';
 
 @Component({
   selector: 'app-address-details',

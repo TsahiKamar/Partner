@@ -34,8 +34,6 @@ import { AddressDetailsComponent } from './components/address-details/address-de
 import { DialogComponent } from './components/customer/dialog/dialog.component';
 import { AddressDialogComponent } from './components/address/dialog/dialog.component';
 
-//import { DialogComponent } from './components/products/dialog/dialog.component';
-import { PackageComponent } from './components/package/package.component';
 import { PackageDialogComponent } from './components/package/dialog/dialog.component';
 
 
@@ -146,8 +144,8 @@ export class MaterialModule {}
     CustomerComponent,
     CustomerDetailsComponent,
     AddressDetailsComponent,
-    ContractsComponent,
-    PackageComponent
+    ContractsComponent//,
+    //PackageComponent
   ],
   imports: [
     BrowserModule,

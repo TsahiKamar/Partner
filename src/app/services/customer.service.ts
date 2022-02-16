@@ -40,12 +40,4 @@ public getCustomerDetails(id:string):Observable<any> {
      )     
 }
 
-  // public getProducts(customerId?:string):Observable<any> {
-  //   return this.http.get<Product>(`http://localhost:63281/Customer/products?customerId=${customerId}`,this.options)
-  //   .pipe(
-  //     map((res: Product) => res )
-  //   )
-  //   }
-   
-
 }
